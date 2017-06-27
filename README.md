@@ -50,10 +50,11 @@ The data-structure in the data-netboard attribute to be interpreted can take one
 
 ``` json
 {
-  "style": <<style>>, 
+
+  "style": «style», 
   "board": [
-    { "type": <<type>>, 
-      "nr": <<nr>>     },
+    { "type": «type», 
+      "nr": «nr»     },
     ...
   ]
 }
@@ -67,7 +68,7 @@ Where:
 ### string shorthand
 
 ```
-<<type>>,<<nr>>[#<<type>>,nr]*~<<style>>
+«type»,«nr»[#«type»,nr]*~«style»
 ```
 
 Where like above, except
@@ -76,7 +77,7 @@ Where like above, except
 ### remote url to json
 
 ```
-<<url>>
+«url»
 ```
 
 Where url points to a downloadable json file containing the full json model
