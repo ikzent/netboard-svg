@@ -1,0 +1,7 @@
+*[role="netboard"] {
+    height: 240px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: rgba(0, 42, 78, 0.2);
+}

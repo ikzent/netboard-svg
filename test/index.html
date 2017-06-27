@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Testpage for netboard-svg</title>
+
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+  <div class="container-fluid row">
+    <div class="col-xs-3"
+         role="netboard"
+         data-netboard='{"style": "walk", "board": [{"type": "node", "nr": 45}, {"type": "N", "nr": 33}, {"type": "CLS", "nr": 17}]}'>
+         No board support.
+    </div>
+    <div class="col-xs-3"
+         role="netboard"
+         data-netboard='{"style": "cycle", "board": [{"type": "NW", "nr": 56}, {"type": "E", "nr": 13}]}'>
+         No board support.
+    </div>
+    <div class="col-xs-3"
+         role="netboard"
+         data-netboard='!,12#E,35~cycle'>
+         No board support.
+    </div>
+    <div class="col-xs-3"
+         role="netboard"
+         data-netboard='sample-01.json'>
+         No board support.
+    </div>
+    <div class="col-xs-3"
+         role="netboard"
+         data-netboard='{"style": "walk", "board": [{"type": "node", "nr": 81}, {"type": "NE", "nr": 28}]}'>
+         No board support.
+    </div>
+  </div>
+
+  <script src="../bower_components/requirejs/require.js"></script>
+  <script type="text/javascript">
+    "use strict";
+    requirejs.config({
+        baseUrl: '../bower_components',
+        paths: {
+            //TODO find mechanism from gulp - bower- requirejs to generate this
+            jquery: 'jquery/dist/jquery.min',
+            svgjs: 'svg.js/dist/svg.min',
+
+            //TODO find mechanism to get this from gulp as well? skip to dist/ ?
+            netboard: '../src/js/netboard-svg'
+        }
+    });
+    require(['jquery', 'svg', 'netboard'], function ($) {
+        $( function () {
+            if (!$.isFunction($.fn.netboard)) {
+                throw "test cannot run if netboard function is not loaded.";
+            } // else
+            var config = {};
+            $('[role="netboard"]').netboard(config);
+        });
+    });
+  </script>
+</body>
+</html>

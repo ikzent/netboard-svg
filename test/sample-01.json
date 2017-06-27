@@ -1,0 +1,13 @@
+{
+  "style": "cycle",
+  "board": [
+    {
+      "type": "node",
+      "nr": 93
+    },
+    {
+      "type": "UR",
+      "nr": 77
+    }
+  ]
+}
