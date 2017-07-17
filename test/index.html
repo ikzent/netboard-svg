@@ -54,12 +54,12 @@
             netboard: '../src/js/netboard-svg'
         }
     });
-    require(['jquery', 'svg', 'netboard'], function ($) {
+    require(['jquery', 'netboard'], function ($) {
         $( function () {
             if (!$.isFunction($.fn.netboard)) {
                 throw "test cannot run if netboard function is not loaded.";
             } // else
-            var config = {};
+            var config = {baseUrl: "../src/"};
             $('[role="netboard"]').netboard(config);
         });
     });

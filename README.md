@@ -90,6 +90,7 @@ The passed down config object can alter and add to these built in defaults:
 ```js
 {
     "default-style": "cycle", // if no style specified assume this
+    "baseUrl": "",            // path relative to page where svg content can be loaded
     "max-width-px": 160,      // scales units to fill at max this width in px
     "top-margin-units": 5,    // how many units to keep from top
     "section-height-units": 36,   // how many units height of each section
@@ -98,6 +99,7 @@ The passed down config object can alter and add to these built in defaults:
     "styles": {               // named style settings
         "cycle": {
             "color" : "rgba(53, 132, 34, 1.0)",    // foreground
+            "icon"  : "svg/cycle.svg", 
             "board-color" : "rgb(237, 255, 253)",  // background
             "board-radius" : 5,                    // rounded corner radius in units
             "board-width" : 100,                   // width in units
@@ -110,6 +112,7 @@ The passed down config object can alter and add to these built in defaults:
         },
         "walk": {
             "color" : "rgba(190, 14, 14, 1.0)",
+            "icon"  : "svg/walk.svg", 
             "board-color" : "rgb(255, 254, 237)",
             "board-radius" : 5,
             "board-width": 80,

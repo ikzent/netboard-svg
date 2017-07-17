@@ -5,6 +5,10 @@
     "use strict";
     var CODERE = /(!,[0-9]{1,3})?((N|E|W|S|NW|NE|SE|SW|CLN|CRS|CRN|CLS|UR|UL),[0-9])+(~(cycle|walk))?/;
 
+    function isEmpty(a) {
+        return (a === null || a === undefined || (a.hasOwnProperty("length") && a.length === 0));
+    }
+
     define('netboard', ['jquery', 'svgjs'], function ($, SVG) {
         function jqExtendor(name, fn) {
             var ext = {};
@@ -74,7 +78,24 @@
             this.model = model;
             this.stylename = model.style || this.config["default-style"];
             this.style = this.config.styles[this.stylename];
-            this.redraw();
+            this.loadStyle();
+        };
+
+        NetBoard.prototype.loadStyle = function (model) {
+            var me = this,
+                styleIconUrl = this.config.baseUrl + this.style.iconPath;
+            if (isEmpty(this.style.iconPath)) {
+                this.redraw();
+                return;
+            } //else
+            $.get(styleIconUrl, function (content, status, xhr) {
+                if (status === "success") {
+                    me.style.iconSvg = content;
+                } else {
+                    console.log("failed loading scg icon at url ==> " + styleIconUrl + " status = " + status);
+                }
+                me.redraw();
+            });
         };
 
         NetBoard.prototype.redraw = function (model) {
@@ -203,6 +224,7 @@
 
         NetBoard.config = { // all dim expressed in units == automatically scaled to have 1oo units fill width
             "default-style": "cycle", // if no style specified assume this
+            "baseUrl": "",
             "max-width-px": 160,      // scales units to fill at max this width in px
             "top-margin-units": 5,    // how many units to keep from top
             "section-height-units": 36,   // how many units height of each section
@@ -211,6 +233,7 @@
             "styles": {               // named style settings
                 "cycle": {
                     "color" : "rgba(53, 132, 34, 1.0)",    // foreground
+                    "iconPath"  : "svg/cycle.svg",
                     "board-color" : "rgb(237, 255, 253)",  // background
                     "board-radius" : 5,                    // rounded corner radius in units
                     "board-width" : 100,                   // width in units
@@ -223,6 +246,7 @@
                 },
                 "walk": {
                     "color" : "rgba(190, 14, 14, 1.0)",
+                    "iconPath"  : "svg/walk.svg",
                     "board-color" : "rgb(255, 254, 237)",
                     "board-radius" : 5,
                     "board-width": 80,
